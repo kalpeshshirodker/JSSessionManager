@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+    <title>Set session</title>
+    <script src="Scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="Scripts\jssessionmanager.js"></script>
+
+    <script>
+       /* $(document).ready(function () {
+
+            var sessionName = "testSession";
+            jsSessionManager.SetSessionValue(sessionName, "sdewee", onSetSession);
+        });
+        */
+
+        function onBtnSetSessionClick() {
+            var sessionName = "testSession";
+
+            var value = $('#txtSessionValue').val();
+            jsSessionManager.SetSessionValue(sessionName, value, onSetSession);    
+        }
+
+
+        function onSetSession(data) {
+           // alert("Session value set successfully");
+
+            var sessionName = "testSession";
+            jsSessionManager.GetSessionValue(sessionName, onReadSession);
+        }
+
+        function onReadSession(data) {
+            var value = data.d;
+            if (value) {
+                $('#sessionValue').html(value);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+    <h3>Set Session Value: Session Name - testSession</h3>
+    <input type="text" id="txtSessionValue" />
+    <input type="button" id="btnSetSession" onclick="onBtnSetSessionClick()" value="Set Session Value"/>
+    </div>
+    <div>
+    <h3>Get value from Session : Session Name - testSession</h3>
+    <span>Session Value ("testSession") : </span><span id="sessionValue"></span>
+    
+    </div>
+</body>
+</html>
